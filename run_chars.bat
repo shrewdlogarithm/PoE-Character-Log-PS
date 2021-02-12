@@ -1,0 +1,1 @@
+PowerShell -ExecutionPolicy remotesigned -Command "& './run_chars.ps1'" 
