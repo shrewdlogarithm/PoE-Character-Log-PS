@@ -1,4 +1,4 @@
-# PoE-Character-Log-PS#
+# PoE-Character-Log-PS #
 ##Path of Exile Character Log - track any PoE character as it's played##
 
 This is VERY much work-in-progress - sharing for feedback/ideas!
