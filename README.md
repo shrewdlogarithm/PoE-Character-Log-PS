@@ -4,22 +4,26 @@
 This is VERY much work-in-progress - sharing for feedback/ideas!
 
 ### How to Use ###
-To scan one-or-more entire account(s) 
-Edit scan_accounts.ps1 and add the account names you wish to scan - then run run_accounts.bat
+Note: If you've not used Powershell before, this is a useful "Getting Started" guide
+https://www.itprotoday.com/powershell/how-run-powershell-script
+You will need to enable scripts on your system if you've not run one before.
 
-To scan one-or-more character(s)
-Edit scan_chars.ps1 - enter the account/character names you wish to scan - then run run_chars.bat
+*To scan one-or-more entire account(s)*
+Edit scan_accounts.ps1 and add the account names you wish to scan - then execute run_accounts.ps1
+
+*To scan one-or-more character(s)*
+Edit scan_chars.ps1 - enter the account/character names you wish to scan - then execute run_chars.ps1
 
 ### What it creates ###
 In the 'data' directory you will find - for each character scanned
 JSON - a complete dump of API data for Tree, Skills and Items - 1 entry per scan
-LOG - a TXT file detailing changes made to a character (intended to run as a Twitch overlay or just to show a quick build guide)
-XML - a PoB-compatible save which details each step of tree/equipment (does not currently support skills - I'm working on that)
-The code can also produce Passive Tree Build Codes compatible with the official GGG Tree - see the code for details
+LOG - a textfile detailing changes made to a character (intended to run as a Twitch overlay or just to show a quick build guide)
+XML - a PoB-compatible savefile (move to the 'Builds' folder under the PoB executable) which details each change made to passive tree/gear (does not currently support skills - I'm working on that)
+The code can also produce Passive Tree Build Codes compatible with the official GGG Tree - not really sure what to do with those yet, but it can do it!
 
 ### Notes ###
 I made this in Powershell because almost everyone playing PoE has Powershell - I also have a Python version which I will share once it's cleaned-up a bit.
-Scripts have to run continuously to track a character - currently they check every 60s - you may wish to increase/reduce that according to your needs
+Scripts obviously have to run continuously to track a character as-it's played - currently they check every 60s tho you may wish to increase/reduce that according to your needs
 
 ### Examples ###
 My Python version is monitoring some of the better-known PoE streamers at http://trjp.pythonanywhere.com - you can see logs/download PoBs from there too!
