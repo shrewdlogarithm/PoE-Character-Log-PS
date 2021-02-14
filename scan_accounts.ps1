@@ -9,6 +9,7 @@ if (Test-Path $lastdb) {
 $POEChars = @()
 
 ForEach ($account in $accounts) {
+    "Scanning Account $account"
     try {
         $apichars = Invoke-RestMethod -URI "$BaseURI/character-window/get-characters?accountName=$account&realm=pc" -Headers $Headers -ContentType $ContentType -Method Get -websession $session -ErrorVariable errVar 
         try {
