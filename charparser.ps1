@@ -1,4 +1,4 @@
-﻿function getskills ($items) {
+﻿function buildskills ($items) {
     $gemgroups = New-Object PSObject 
     ForEach($item in $items) {
         [String] $slot = $item.inventoryId
@@ -19,17 +19,26 @@
                     $gemgroups."$slot"[$group].gems += $item.socketedItems[$gem].typeLine
                 }
             }
-            ForEach ($group in $gemgroups."$slot") {
-                ForEach ($gem in $group.gems) {
-                    $gem
-                }
-                ForEach ($gem in $group.supports) {
-                    $gem + " >> " + $group.gems
-                }
-            }        
         }
     }
+    $gemgroups
 }
+
+function getskills ($items) {
+    $gemgroups = buildskills($items) 
+    $gemgroups | Get-Member -MemberType NoteProperty | ForEach-Object {
+        $slot = $_.Name
+        ForEach ($group in $gemgroups."$slot") {
+            ForEach ($gem in $group.gems) {
+                $gem
+            }
+            ForEach ($gem in $group.supports) {
+                $gem + " >> " + $group.gems
+            }
+        }        
+    }
+}
+
 function getpassives($passives) {
     ForEach($passive in $passives) {
         $passivedb.nodes.$passive.dn
@@ -179,7 +188,7 @@ function makexml($chardata,$xmname) {
         [void]$itemset.setAttribute("title","$isn - Level " + $chardata[$e].character.level)
         $fln = 1
         foreach ($itm in $chardata[$e].items) {
-            if ($socketTrans.ContainsKey($itm.inventoryId) -and $itm.frameType -lt 4) {
+            if ($item.length -gt 0 -and $socketTrans.ContainsKey($itm.inventoryId) -and $itm.frameType -lt 4) {
                 $itemkey = $itm.name + $itm.typeLine
                 $itemno = $itn
                 if ($itemdb.ContainsKey($itemkey)) {
