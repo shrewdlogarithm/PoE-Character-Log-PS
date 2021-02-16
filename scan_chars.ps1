@@ -27,8 +27,8 @@ ForEach ($POEChar in $POEChars) {
             @{
                 update=$scantime
                 character=@{}
-                items=@{}
-                passives=@{}
+                items=@()
+                passives=@()
             }
         )
 

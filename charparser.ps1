@@ -1,4 +1,14 @@
-﻿function buildskills ($items) {
+﻿$POBTREEVER = "3_13"
+
+$passivedb = Get-Content -Raw -Path "$PSScriptRoot/passive-skill-tree.json" | ConvertFrom-Json
+function getpassives($passives) {
+    ForEach($passive in $passives) {
+        $passivedb.nodes.$passive.dn
+    }
+
+}
+
+function buildskills ($items) {
     $gemgroups = New-Object PSObject 
     ForEach($item in $items) {
         [String] $slot = $item.inventoryId
@@ -25,8 +35,7 @@
 }
 
 function getskills ($items) {
-    $gemgroups = buildskills($items) 
-    $gemgroups | Get-Member -MemberType NoteProperty | ForEach-Object {
+    buildskills($items) | Get-Member -MemberType NoteProperty | ForEach-Object {
         $slot = $_.Name
         ForEach ($group in $gemgroups."$slot") {
             ForEach ($gem in $group.gems) {
@@ -37,13 +46,6 @@ function getskills ($items) {
             }
         }        
     }
-}
-
-function getpassives($passives) {
-    ForEach($passive in $passives) {
-        $passivedb.nodes.$passive.dn
-    }
-
 }
 
 function getitems($items) {
@@ -178,7 +180,7 @@ function makexml($chardata,$xmname) {
             [void]$spec.setAttribute("title","$e - Level " + $chardata[$e].character.level)
             [void]$spec.setAttribute("ascendClassId",$chardata[$e].character.ascendancyClass)
             [void]$spec.setAttribute("nodes",$nodes)
-            [void]$spec.setAttribute("treeVersion","3_13")
+            [void]$spec.setAttribute("treeVersion",$POBTREEVER)
             [void]$spec.setAttribute("classId",$chardata[$e].character.classId)
             [void]$tree.AppendChild($spec)
         }
@@ -188,7 +190,7 @@ function makexml($chardata,$xmname) {
         [void]$itemset.setAttribute("title","$isn - Level " + $chardata[$e].character.level)
         $fln = 1
         foreach ($itm in $chardata[$e].items) {
-            if ($item.length -gt 0 -and $socketTrans.ContainsKey($itm.inventoryId) -and $itm.frameType -lt 4) {
+            if ($socketTrans.ContainsKey($itm.inventoryId) -and $itm.frameType -lt 4) {
                 $itemkey = $itm.name + $itm.typeLine
                 $itemno = $itn
                 if ($itemdb.ContainsKey($itemkey)) {
@@ -270,5 +272,3 @@ function makexml($chardata,$xmname) {
         return ,$pobxml
     }
 }
-
-$passivedb = Get-Content -Raw -Path "$PSScriptRoot/passive-skill-tree.json" | ConvertFrom-Json
