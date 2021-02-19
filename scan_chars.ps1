@@ -47,8 +47,8 @@ ForEach ($POEChar in $POEChars) {
 
         "Checking $POEAccount-$POEName..."
         if ($chardata.length -gt 1) {
-            checkchanges $chardata[$chardata.length-2] $chardata[$chardata.length-1] | Tee-Object -FilePath "$PSScriptRoot/data/$POEaccount-$POEName.log" -append 
-            makexml $chardata "$PSScriptRoot/data/$POEaccount-$POEName.xml"
+            checkchanges $chardata[$chardata.length-2] $chardata[$chardata.length-1] | Tee-Object -FilePath "$PSScriptRoot/logs/$POEaccount-$POEName.log" -append 
+            makexml $chardata "$PSScriptRoot/pob/builds/$POEaccount-$POEName.xml"
         }
     
     } catch {
