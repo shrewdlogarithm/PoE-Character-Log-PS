@@ -29,4 +29,4 @@ I made this in Powershell because almost everyone playing PoE has Powershell - I
 Scripts obviously have to run continuously to track a character as-it's played - currently they check every 60s tho you may wish to increase/reduce that according to your needs
 
 ### Examples ###
-My Python version is monitoring some of the better-known PoE streamers at http://trjp.pythonanywhere.com - you can see logs/download PoBs from there too!
+My Python version is monitoring some of the better-known PoE streamers at http://poeclog.pythonanywhere.com - you can see logs/download PoBs from there too!
