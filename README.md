@@ -9,12 +9,12 @@ https://www.itprotoday.com/powershell/how-run-powershell-script
 You will need to enable scripts on your system if you've not run one before.
 
 *To scan one-or-more entire account(s)*
-Edit scan_accounts.ps1 to include the account name(s) you wish to scan
+Edit run_accounts.ps1 to include the account name(s) you wish to scan
 Execute run_accounts.ps1 to scan those accounts
 Note: only characters which are created or gain XP AFTER the script begins will be logged
 
 *To scan one-or-more character(s)*
-Edit scan_chars.ps1 to include the account/character name(s) you wish to scan
+Edit run_chars.ps1 to include the account/character name(s) you wish to scan
 Execute run_chars.ps1 to scan those characters
 
 ### What it creates ###
