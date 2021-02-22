@@ -24,10 +24,9 @@ XML - a Path-of-Building-compatible savefile
 Note: you can move this file to your Path of Building "builds' folder OR simple install PoB into the pob directory directly!
 
 ## Other stuff ##
-The "mysite" directory contains a Bottle.py application which creates a webpage summarizing all the accounts/characters tracked 
-This also includes PoB "build codes" which can be pasted into PoB directly.
-To see an example of this, this site tracks popular PoE streamers 
-
+The "mysite" directory contains a Bottle.py application which creates a webpage summarizing all the accounts/characters tracked  
+This also includes PoB "build codes" which can be pasted into PoB directly  
+To see an example of this, this site tracks popular PoE streamers  
 http://poeclog.pythonanywhere.com
 
 ## Running this on PythonAnywhere ##
@@ -64,8 +63,7 @@ To get the 'mysite' Bottle.py application working, create a new WebApp, choose "
 ```
 
 ## Notes ##
-There is  a Powershell version of this for desktop use/people who don't want to install Python
-
+There is  a Powershell version of this for desktop use/people who don't want to install Python  
 https://github.com/shrewdlogarithm/PoE-Character-Log-PS
 
 It lags behind the Python version in features but it's data gathering is identical (JSON files can be interchanged between the PS and Python versions just fine)
