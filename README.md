@@ -29,11 +29,14 @@ XML - a PoB-compatible savefile (move to the 'Builds' folder under the PoB execu
 The code can also produce Passive Tree Build Codes compatible with the official GGG Tree - not really sure what to do with those yet, but it can do it!
 
 ## Notes ##
-I made this in Powershell because almost everyone playing PoE has Powershell
+I made this in Powershell because almost everyone playing PoE has Powershell installed already.
 
-I also have a Python version - intended for use on desktop or via a service like PythonAnywhere - here
+I also have a Python version - intended for use locally or via a service like PythonAnywhere 
 
 https://github.com/shrewdlogarithm/PoE-Character-Log-Python
 
-## Examples ##
-My Python version is monitoring some of the better-known PoE streamers at http://poeclog.pythonanywhere.com - you can see logs/download PoBs from there too!
+The Python version is monitoring some of the better-known PoE streamers here
+
+http://poeclog.pythonanywhere.com 
+
+I generally put new features into the Python version first but I'll move them over to the PowerShell version if people use it!
