@@ -11,18 +11,14 @@ This loops 'forever', scanning selected PoE Accounts and storing their equipment
 First-run  creates a "setting.json" file - edit this to specify the accounts you'd like to track (this file is read every time the scanner loops - no-need to restart)
 
 ## What it creates ##
-In the 'data' directory you will find 
-
+In the 'data' directory you will find  
 JSON files which are a complete dump of API data for Tree, Skills and Items - 1 entry per scan
 
-In the "logs" directory you will find
-
-LOG files - textfiles detailing changes made to a character (intended to run as a Twitch overlay or just to show a quick build guide)
-
+In the "logs" directory you will find  
+LOG files - textfiles detailing changes made to a character (intended to run as a Twitch overlay or just to show a quick build guide)  
 HTML files - the same information as the LOG files but hyperlinked/colourized 
 
-In the "pob/builds" directory you will find
-
+In the "pob/builds" directory you will find  
 XML - a Path-of-Building-compatible savefile 
 
 Note: you can move this file to your Path of Building "builds' folder OR simple install PoB into the pob directory directly!
