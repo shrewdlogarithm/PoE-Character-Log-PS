@@ -5,8 +5,10 @@ This is VERY much work-in-progress - sharing for feedback/ideas!
 
 ## How to Use ##
 Note: If you've not used Powershell before, this is a useful "Getting Started" guide
+
 https://www.itprotoday.com/powershell/how-run-powershell-script
-You will need to enable scripts on your system if you've not run one before.
+
+Important Note: You will need to enable scripts on your system if you've not run one before.
 
 ### To scan one-or-more entire account(s) ###
 
@@ -27,8 +29,11 @@ XML - a PoB-compatible savefile (move to the 'Builds' folder under the PoB execu
 The code can also produce Passive Tree Build Codes compatible with the official GGG Tree - not really sure what to do with those yet, but it can do it!
 
 ## Notes ##
-I made this in Powershell because almost everyone playing PoE has Powershell - I also have a Python version which I will share once it's cleaned-up a bit.
-Scripts obviously have to run continuously to track a character as-it's played - currently they check every 60s tho you may wish to increase/reduce that according to your needs
+I made this in Powershell because almost everyone playing PoE has Powershell
+
+I also have a Python version - intended for use on desktop or via a service like PythonAnywhere - here
+
+https://github.com/shrewdlogarithm/PoE-Character-Log-Python
 
 ## Examples ##
 My Python version is monitoring some of the better-known PoE streamers at http://poeclog.pythonanywhere.com - you can see logs/download PoBs from there too!
