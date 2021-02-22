@@ -35,12 +35,6 @@ Note: CPU limits mean you won't be able to track many accounts and/or may need t
 
 To get the 'mysite' Bottle.py application working, create a new WebApp, choose "Custom" and then edit the WSGI to contain the following content (make sure you edit-in your PythonAnywhere username where marked)
 ```
-  # This file contains the WSGI configuration required to serve up your
-  # web application at http://<your-username>.pythonanywhere.com/
-  # It works by setting the variable 'application' to a WSGI handler of some
-  # description.
-  #
-  # The below has been auto-generated for your Bottle project
   import bottle
   import os
   import sys
