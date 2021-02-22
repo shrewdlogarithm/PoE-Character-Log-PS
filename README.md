@@ -11,11 +11,12 @@ You will need to enable scripts on your system if you've not run one before.
 *To scan one-or-more entire account(s)*  
 Edit run_accounts.ps1 to include the account name(s) you wish to scan  
 Execute run_accounts.ps1 to scan those accounts  
-Note: only characters which are created or gain XP AFTER the script begins will be logged
 
 *To scan one-or-more character(s)*  
 Edit run_chars.ps1 to include the account/character name(s) you wish to scan  
 Execute run_chars.ps1 to scan those characters
+
+Note: only characters which are created or gain XP AFTER the script begins will be logged - you can also specify the max level to consider 'new' characters and the level at which you want to stop tracking (tracking characters above Level 85 produces a LOT more data - above 90 it gets silly - I will fix this one day - promise!)
 
 ### What it creates ###
 In the 'data' directory you will find - for each character scanned  
