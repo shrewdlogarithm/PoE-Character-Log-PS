@@ -12,7 +12,7 @@ function buildskills ($items) {
     $gemgroups = New-Object PSObject 
     ForEach($item in $items) {
         [String] $slot = $item.inventoryId
-        if ($slot -and $slot -ne "MainInventory" -and $slot -ne "Flask") {
+        if ($slot -and $slot -ne "MainInventory" -and $slot -ne "Flask" -and $slot -ne "Weapon2" -and $slot -ne "Offhand2") {
             $gemobjs = @()
             For ($g = 0;$g -lt 6;$g++) {
                 $gemobjs += @{
@@ -35,14 +35,20 @@ function buildskills ($items) {
 }
 
 function getskills ($items) {
-    buildskills($items) | Get-Member -MemberType NoteProperty | ForEach-Object {
+    $gemgroups = buildskills($items) 
+    $gemgroups | Get-Member -MemberType NoteProperty | ForEach-Object {
         $slot = $_.Name
         ForEach ($group in $gemgroups."$slot") {
-            ForEach ($gem in $group.gems) {
-                $gem
-            }
-            ForEach ($gem in $group.supports) {
-                $gem + " >> " + $group.gems
+            #ForEach ($gem in $group.gems) {
+            #    $gem
+            #}
+            #ForEach ($gem in $group.supports) {
+            #    $gem + " >> " + $group.gems
+            #}
+            if ($group["gems"].count -gt 0 -or $group["supports"].count -gt 0) {
+                $gemout = $group["gems"] -join ","
+                $suppout = $group["supports"] -join ","
+                -join($gemout," >> ",$suppout)
             }
         }        
     }
