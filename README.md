@@ -26,6 +26,10 @@ XML - PoB-compatible savefile (move to the 'Builds' folder under the PoB executa
 
 The code can also produce Official GGG Passive Tree Build Links and PoB Pastecodes 
 
+### Other Stuff ###
+The rebuildlogxml.ps script will re-create all log/html/xml files - this can be useful to update older characters when changes are made to the parsing/output
+
+
 ### Notes ###
 I made this in Powershell because almost everyone playing PoE has Powershell  
 
