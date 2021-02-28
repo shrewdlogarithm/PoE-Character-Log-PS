@@ -3,7 +3,11 @@
 $passivedb = Get-Content -Raw -Path "$PSScriptRoot/passive-skill-tree.json" | ConvertFrom-Json
 function getpassives($passives) {
     ForEach($passive in $passives) {
-        $passivedb.nodes.$passive.dn
+        if ($passivedb.nodes.$passive.isnotable) {
+            $passivedb.nodes.$passive.name
+        } else {
+            -join($passivedb.nodes.$passive.name," [",$passive,"]")
+        }
     }
 
 }
@@ -24,9 +28,9 @@ function buildskills ($items) {
             for ($gem = 0; $gem -lt $item.socketedItems.count; $gem++) {
                 $group = $item.sockets[$gem].group
                 if ($item.socketedItems[$gem].support) {
-                    $gemgroups."$slot"[$group].supports += $item.socketedItems[$gem].typeLine
+                    $gemgroups.$slot[$group].supports += $item.socketedItems[$gem].typeLine
                 } else {
-                    $gemgroups."$slot"[$group].gems += $item.socketedItems[$gem].typeLine
+                    $gemgroups.$slot[$group].gems += $item.socketedItems[$gem].typeLine
                 }
             }
         }
@@ -46,9 +50,9 @@ function getskills ($items) {
             #    $gem + " >> " + $group.gems
             #}
             if ($group["gems"].count -gt 0 -or $group["supports"].count -gt 0) {
-                $gemout = $group["gems"] -join ","
-                $suppout = $group["supports"] -join ","
-                -join($gemout," >> ",$suppout)
+                $gemout = $group["gems"] -join " | "
+                $suppout = $group["supports"] -join " | "
+                $gemout + " >> " + $suppout 
             }
         }        
     }
@@ -74,7 +78,7 @@ function getitems($items) {
 
 function maketreelink($item) {
     [byte[]] $b = 0,0,0,4,$item.character.classid,$item.character.ascendancyClass,0
-    ForEach ($node in $item.passives.hashes) {
+    ForEach ($node in $item.passives) {
         $b += [math]::floor($node/256)
         $b += $node % 256
     }
@@ -99,22 +103,26 @@ function checkchanges($befitem, $aftitem) {
     if ($befitem.character.level -ne $aftitem.character.level) {
         "Reached Level " + $aftitem.character.level
     }
-    
-    $before = getskills $befitem.items
-    $after= getskills $aftitem.items
-    showchanges $before $after "Removed " "Socketed "
-    
+       
     $before = getpassives $befitem.passives
     $after = getpassives $aftitem.passives
-    $allocs = showchanges $before $after "Deallocated " "Allocated "
-    $allocs
-    if ($allocs.length -gt 0) {
-        maketreelink $aftitem 
-    }
+    showchanges $before $after "Deallocated " "Allocated "
 
     $before = getitems $befitem.items
     $after = getitems $aftitem.items
-    showchanges $before $after "Unequipped " "Equipped "
+    showchanges $before $after "Removed " "Equipped "
+
+    $before = getskills $befitem.items
+    $after= getskills $aftitem.items
+    showchanges $before $after "Unsocketed " "Socketed "
+
+    if ($befitem.character.level -ne $aftitem.character.level) {
+        $lasttreelink = maketreelink($befitem)
+        $treelink = maketreelink($aftitem)
+        if ($lasttreelink -ne $treelink) {
+            "Passive Tree " + $treelink
+        }
+    }
 }
 
 $className = @("Scion","Marauder","Ranger","Witch","Duelist","Templar","Shadow")
@@ -174,6 +182,9 @@ function makexml($chardata,$xmname) {
     [void]$items.setAttribute("activeItemSet","1")
     [void]$items.setAttribute("useSecondWeaponSet","nil")
     [void]$pob.AppendChild($items)
+    $skills = $pobxml.CreateElement("Skills")
+    [void]$pob.AppendChild($skills)
+    $skilldb = [System.Collections.ArrayList]@()
     $itemdb = @{}
     $lastset = @{}
     $itn = 1
@@ -189,6 +200,33 @@ function makexml($chardata,$xmname) {
             [void]$spec.setAttribute("treeVersion",$POBTREEVER)
             [void]$spec.setAttribute("classId",$chardata[$e].character.classId)
             [void]$tree.AppendChild($spec)
+        }
+        $gemgroups = buildskills($chardata[$e].items)  
+        $gemgroups | Get-Member -MemberType NoteProperty | ForEach-Object {
+            $slot = $_.name
+            $skill = $pobxml.CreateElement("Skill")
+            foreach ($group in $gemgroups.$slot) {
+                if ($group.gems.count -gt 0) {
+                    $mainskills = $group.gems | Sort-Object
+                    $supportskills = $group.supports | Sort-Object
+                    $skillset = -join($mainskills -join " ",">>",$supportskills -join " ") 
+                    $skillset = $skillset -replace " Support",""
+                    if ($skillset -notin $skilldb) {
+                        [void]$skilldb.Add($skillset)
+                        foreach ($gm in ($group["gems"]+$group["supports"])) {
+                            $gem = $pobxml.CreateElement("Gem")
+                            [void]$gem.setAttribute("level","1")
+                            [void]$gem.setAttribute("nameSpec",$gm -replace " Support","")
+                            [void]$gem.setAttribute("quality","0")
+                            [void]$gem.setAttribute("enabled","true")
+                            [void]$skill.appendChild($gem)
+                        [void]$skill.setAttribute("label","$level-$skillset")
+                        [void]$skill.setAttribute("enabled","true")                        
+                        [void]$skills.appendChild($skill)
+                        }
+                    }
+                }
+            }
         }
         $itemset = $pobxml.CreateElement("ItemSet")
         [void]$itemset.setAttribute("id",$isn)
