@@ -20,10 +20,11 @@ Note: only characters which are created or gain XP AFTER the script begins will 
 
 ### What it creates ###
 In the 'data' directory you will find - for each character scanned  
-JSON - a complete dump of API data for Tree, Skills and Items - 1 entry per scan  
-LOG - a textfile detailing changes made to a character (intended to run as a Twitch overlay or just to show a quick build guide)  
-XML - a PoB-compatible savefile (move to the 'Builds' folder under the PoB executable) which details each change made to passive tree/gear (does not currently support skills - I'm working on that)  
-The code can also produce Passive Tree Build Codes compatible with the official GGG Tree - not really sure what to do with those yet, but it can do it!
+JSON - API data for Tree, Skills and Items - 1 entry per scan  
+LOG -  textfile detailing changes made to a character (intended to run as a Twitch overlay or just to show a quick build guide)  
+XML - PoB-compatible savefile (move to the 'Builds' folder under the PoB executable) which details changes made to passive tree/gear/skills as the char levels-up
+
+The code can also produce Official GGG Passive Tree Build Codes and PoB Pastecodes 
 
 ### Notes ###
 I made this in Powershell because almost everyone playing PoE has Powershell  
