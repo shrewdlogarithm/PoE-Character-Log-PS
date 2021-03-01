@@ -4,4 +4,4 @@ indev/*
 pob/*
 test*.ps1
 !**/.gitkeep
-
+settings.json

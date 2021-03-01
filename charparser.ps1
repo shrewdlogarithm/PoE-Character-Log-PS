@@ -99,7 +99,7 @@ function showchanges($before, $after, $bpref, $apref) {
     }
 }
 
-function checkchanges($befitem, $aftitem) {
+function makelogs($befitem, $aftitem) {
     if ($befitem.character.level -ne $aftitem.character.level) {
         "Reached Level " + $aftitem.character.level
     }
