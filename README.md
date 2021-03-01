@@ -8,7 +8,7 @@ Note: If you've not used Powershell before, this is a useful "Getting Started" g
 https://www.itprotoday.com/powershell/how-run-powershell-script  
 You will need to enable scripts on your system if you've not run one before.
 
-Run "scan_all.ps1" 
+Run "scan_all.ps1"  
 This runs endlessly (Ctrl-C to stop it) tracking characters as they are played...
 
 The first time you run this it creates "settings.json" - edit that to specify the account(s) you wish to scan. 
@@ -24,6 +24,6 @@ XML - PoB-compatible savefile (move to PoB's 'Builds' folder) which shows change
 The script "rebuildlogxml.ps1" re-creates all log/html/xml files - this can be useful after changes are made in the code to refresh older builds
 
 ### Notes ###
-I made this in Powershell because almost everyone playing PoE has Powershell 
-There is also a Python version at https://github.com/shrewdlogarithm/PoE-Character-Log-Python 
+I made this in Powershell because almost everyone playing PoE has Powershell  
+There is also a Python version at https://github.com/shrewdlogarithm/PoE-Character-Log-Python   
 A version of that is tracking major PoE Streamers here>>> https://poeclog.pythonanywhere.com
