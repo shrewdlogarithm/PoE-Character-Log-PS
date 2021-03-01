@@ -1,8 +1,8 @@
-accountdb.json
+*.json
 data/*
 logs/*
 indev/*
 pob/*
 test*.ps1
 !**/.gitkeep
-settings.json
+accountdb.json
