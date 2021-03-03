@@ -4,9 +4,9 @@
 This is VERY much work-in-progress - sharing for feedback/ideas!
 
 ### What it Does ###
-Repeatedly Download Passives, Skills and Items for any character which has been active on the Accounts you choose to monitor.
-Create a 'Build Log' showing changes to the character over-time
-Create a Path-of-Building Pastecode/XML which contains the same changes-over-time
+Repeatedly Download Passives, Skills and Items for any character which has been active on the Accounts you choose to monitor.  
+Create a 'Build Log' showing changes to the character over-time  
+Create a Path-of-Building Pastecode/XML which contains the same changes-over-time  
 
 ### How to Use ###
 Note: If you've not used Powershell before, this is a useful "Getting Started" guide  
