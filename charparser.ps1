@@ -246,7 +246,9 @@ function makexml($chardata,$xmname) {
                     $item = $pobxml.CreateElement("Item")
                     [void]$item.setAttribute("id",$itemno)
                     [void]$pob.AppendChild($item)
-                    $itemtext = "`nRarity: " + $rarity[$itm.frameType] + "`n" + $itm.name + "`n" + $itm.typeLine + "`n" -replace [char]246, "o" # the Maelstrom 'o'
+                    $itemtext = "`nRarity: " + $rarity[$itm.frameType] + "`n" + $itm.name + "`n" + $itm.typeLine + "`n" 
+                    $itemtext = $itemtext -replace [char]246, "o" # the Maelstrom 'o'
+                    $itemtext = $itemtext -replace [char]228, "a" # the Doppelganger 'a'
                     if ($itm.id) {
                         $itemtext += "Unique ID :" + $itm.id + "`n"
                     }
