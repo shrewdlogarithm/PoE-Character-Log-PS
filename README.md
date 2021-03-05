@@ -3,34 +3,39 @@
 
 This is VERY much work-in-progress - sharing for feedback/ideas!
 
+### What it Does ###
+Repeatedly Download Passives, Skills and Items for any character which has been active on the Accounts you choose to monitor.  
+Create a 'Build Log' showing changes to the character over-time  
+Create a Path-of-Building Pastecode/XML which contains the same changes-over-time  
+
 ### How to Use ###
 Note: If you've not used Powershell before, this is a useful "Getting Started" guide  
 https://www.itprotoday.com/powershell/how-run-powershell-script  
 You will need to enable scripts on your system if you've not run one before.
 
-Run "scan_all.ps1"  
-This runs endlessly, tracking characters as they are played...  
+Run "scan_all"  
+This loops endlessly, tracking characters as they are played...  
 
 The first time you run this it creates "settings.json"  
 Edit that to  
-Specify the account(s) you wish to scan.  
-Specify short (between API accesses) and long (between scans or after errors) sleep times  
+Specify the account(s) you wish to monitor.  
+Specify short (between API accesses) and long (between scans or after errors) sleep times between scans
 
 Note: settings.json is read every time the scanner loops - no-need to restart!
 
 ## What it creates ##
-In the 'data' directory you will find  
-JSON files which are a complete dump of API data for Tree, Skills and Items - 1 entry per scan
+In the 'data' directory
+JSON files which are API data for Tree, Skills and Items - 1 file per character and 1 entry per scan
 
-In the "logs" directory you will find  
-LOG files - textfiles detailing changes made to a character (intended to run as a Twitch overlay or just to show a quick build guide)  
+In the "logs" directory
+LOG files - textfiles detailing changes seen during scanning
 
-In the "pob/builds" directory you will find  
+In the "pob/builds" directory
 XML - a Path-of-Building-compatible savefile 
 
 
 ### Other Stuff ###
-rebuildlogxml re-creates log/html/xml files  
+"rebuildlogxml" re-creates log/html/xml files  
 This can be useful to update older characters when changes are made to the parsing/output
 
 ### Notes ###
