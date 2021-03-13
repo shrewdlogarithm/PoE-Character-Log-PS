@@ -8,6 +8,8 @@ Repeatedly Download Passives, Skills and Items for any character which has been 
 Create a 'Build Log' showing changes to the character over-time  
 Create a Path-of-Building Pastecode/XML which contains the same changes-over-time  
 
+[PoEClog in less than 60s (YouTube Link)](https://www.youtube.com/watch?v=Mje0pl9L8sY)
+
 ### How to Use ###
 Note: If you've not used Powershell before, this is a useful "Getting Started" guide  
 https://www.itprotoday.com/powershell/how-run-powershell-script  
