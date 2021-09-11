@@ -223,6 +223,7 @@ function makexml($chardata,$xmname) {
                             [void]$gem.setAttribute("enabled","true")
                             [void]$skill.appendChild($gem)
                         [void]$skill.setAttribute("label","" + $chardata[$e].character.level + "-" + $skillset)
+                        [void]$skill.setAttribute("slot","" + $socketTrans[$slot])
                         [void]$skill.setAttribute("enabled","true")                        
                         [void]$skills.appendChild($skill)
                         }
