@@ -27,10 +27,12 @@ function buildskills ($items) {
             $gemgroups | Add-Member -NotePropertyName "$slot" -NotePropertyValue $gemobjs
             for ($gem = 0; $gem -lt $item.socketedItems.count; $gem++) {
                 $group = $item.sockets[$gem].group
-                if ($item.socketedItems[$gem].support) {
-                    $gemgroups.$slot[$group].supports += $item.socketedItems[$gem].typeLine
-                } else {
-                    $gemgroups.$slot[$group].gems += $item.socketedItems[$gem].typeLine
+                if ($item.socketedItems[$gem].typeLine -and $item.socketedItems[$gem].colour) {
+                    if ($item.socketedItems[$gem].support) {
+                        $gemgroups.$slot[$group].supports += $item.socketedItems[$gem].typeLine
+                    } else {
+                        $gemgroups.$slot[$group].gems += $item.socketedItems[$gem].typeLine
+                    }
                 }
             }
         }
@@ -184,7 +186,7 @@ function makexml($chardata,$xmname) {
     [void]$pob.AppendChild($items)
     $skills = $pobxml.CreateElement("Skills")
     [void]$pob.AppendChild($skills)
-    $skilldb = [System.Collections.ArrayList]@()
+    $skilldb = @{}
     $itemdb = @{}
     $lastset = @{}
     $itn = 1
@@ -205,31 +207,27 @@ function makexml($chardata,$xmname) {
         $gemgroups | Get-Member -MemberType NoteProperty | ForEach-Object {
             $slot = $_.name
             $skill = $pobxml.CreateElement("Skill")
+            $skillset = ""
             foreach ($group in $gemgroups.$slot) {
                 if ($group.gems.count -gt 0) {
-                    $mainskills = $group.gems | sort
-                    $mainskills = $mainskills -join " "
-                    $supportskills = $group.supports | sort 
-                    $supportskills = $supportskills -join " "
-                    $skillset = $mainskills + " " + $supportskills 
-                    $skillset = $skillset -replace " Support",""
-                    if ($skillset -notin $skilldb) {
-                        [void]$skilldb.Add($skillset)
-                        foreach ($gm in ($group["gems"]+$group["supports"])) {
-                            $gem = $pobxml.CreateElement("Gem")
-                            [void]$gem.setAttribute("level","1")
-                            [void]$gem.setAttribute("nameSpec",($gm -replace " Support",""))
-                            [void]$gem.setAttribute("quality","0")
-                            [void]$gem.setAttribute("enabled","true")
-                            [void]$skill.appendChild($gem)
-                        [void]$skill.setAttribute("label","" + $chardata[$e].character.level + "-" + $skillset)
-                        [void]$skill.setAttribute("slot","" + $socketTrans[$slot])
-                        [void]$skill.setAttribute("enabled","true")                        
-                        [void]$skills.appendChild($skill)
-                        }
+                    $skillset += (($group.gems | sort) -join " ") + " " + (($group.supports| sort) -join " ")
+                    foreach ($gm in ($group["gems"]+$group["supports"])) {
+                        $gem = $pobxml.CreateElement("Gem")
+                        [void]$gem.setAttribute("level","1")
+                        [void]$gem.setAttribute("nameSpec",($gm -replace " Support",""))
+                        [void]$gem.setAttribute("quality","0")
+                        [void]$gem.setAttribute("enabled","true")
+                        [void]$skill.appendChild($gem)
                     }
                 }
             }
+            if ($skillset -ne "" -and (-not $skilldb.ContainsKey($slot) -or $skilldb[$slot] -notcontains $skillset)) {
+                [void]$skill.setAttribute("label","" + $chardata[$e].character.level + "-" + $skillset)
+                [void]$skill.setAttribute("slot","" + $socketTrans[$slot])
+                [void]$skill.setAttribute("enabled","true")                        
+                [void]$skills.appendChild($skill)
+                $skilldb[$slot] = $skillset
+           }
         }
         $itemset = $pobxml.CreateElement("ItemSet")
         [void]$itemset.setAttribute("id",$isn)
