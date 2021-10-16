@@ -1,6 +1,8 @@
 # PoE-Character-Log-PS #
 ## Path of Exile Character Log - track any PoE character as it's played ##
 
+# IMPORTANT NOTE: This version is pretty much abandoned in favour of the Desktop and Python versions - check my other REPOs for those #
+
 This is VERY much work-in-progress - sharing for feedback/ideas!
 
 ### What it Does ###
