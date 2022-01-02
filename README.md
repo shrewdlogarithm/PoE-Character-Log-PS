@@ -1,9 +1,7 @@
 # PoE-Character-Log-PS #
 ## Path of Exile Character Log - track any PoE character as it's played ##
 
-# IMPORTANT NOTE: This version is pretty much abandoned in favour of the Desktop and Python versions - check my other REPOs for those #
-
-This is VERY much work-in-progress - sharing for feedback/ideas!
+# IMPORTANT NOTE: This version is pretty much abandoned in favour of the Desktop and Python versions
 
 ### What it Does ###
 Repeatedly Download Passives, Skills and Items for any character which has been active on the Accounts you choose to monitor.  
@@ -37,12 +35,6 @@ LOG files - textfiles detailing changes seen during scanning
 In the "pob/builds" directory
 XML - a Path-of-Building-compatible savefile 
 
-
 ### Other Stuff ###
 "rebuildlogxml" re-creates log/html/xml files  
 This can be useful to update older characters when changes are made to the parsing/output
-
-### Notes ###
-I made this in Powershell because almost everyone playing PoE has Powershell  
-There is also a Python version at https://github.com/shrewdlogarithm/PoE-Character-Log-Python   
-A version of that is tracking major PoE Streamers here>>> https://poeclog.pythonanywhere.com
